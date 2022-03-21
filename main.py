@@ -25,6 +25,29 @@ def sort_list(tracks_list):
     return dict(sorted(tracks_list.items(), key=lambda x: x[1], reverse=True))
 
 
+def compute_list(concert_premiere_length, tracks_list):
+    total_length = 0
+    result = []
+    for x in range(3):
+        print("XXXXX ROUND {} XXXXX".format(x + 1))
+        tracks_list = filter_list(tracks_list, concert_premiere_length - total_length, strict=x < 2)
+        if len(tracks_list) == 0:
+            print("No tracks available for the premiere.")
+            return False, result
+        higher_key = list(tracks_list.keys())[0]
+        total_length += tracks_list[higher_key]
+        result.append(higher_key)
+
+        print()
+        print("The highest track is {} with a length of {}".format(higher_key, tracks_list[higher_key]))
+        del tracks_list[higher_key]
+        print("The remaining tracks are: {}".format(tracks_list))
+        print("The total length of the tracks is {}".format(total_length))
+        print()
+    valid_combination = concert_premiere_length - SET_LENGTH_TOLERANCE <= total_length <= concert_premiere_length + SET_LENGTH_TOLERANCE
+    return valid_combination, result
+
+
 def main():
     """
     Main function.
@@ -32,7 +55,19 @@ def main():
     """
     concert_premiere_length = int(input("How long is the concert premiere? "))
     tracks_list = sort_list(INPUT_LIST)
-    # TODO: Add the computation of the tracks
+    execute = True
+    while execute and len(tracks_list) > 2:
+        print()
+        print()
+        print()
+        print("-----> The tracks available are: {}".format(tracks_list))
+
+        possible, result = compute_list(concert_premiere_length, tracks_list)
+        if possible:
+            print("The tracks are: {}".format(result))
+            return True
+        tracks_list.pop(list(tracks_list.keys())[0])
+    return False
 
 
 if __name__ == '__main__':
