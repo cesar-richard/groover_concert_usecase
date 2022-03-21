@@ -1,14 +1,14 @@
 INPUT_LIST = dict(stairway_to_heaven=8, una_mattina=4, track1=1, track2=2, track3=3, track4=4, track5=5, track6=6,
                   track7=7, track8=8, track9=9)
-SET_LENGTH_TOLERANCE = 5  # Bonus: set tolerence for set length
+SET_LENGTH_TOLERANCE = 5  # Bonus: set tolerance for set length
 
 
 def filter_list(tracks_list, goal_length, strict=True):
     """
     Filter the list of tracks to only those that are under a max length.
-    :param strict: should the list be filtered to only those tracks that are exactly the goal length?
     :param tracks_list: list of tracks
     :param goal_length: Length limit
+    :param strict: should the list be filtered to only those tracks that are exactly the goal length?
     :return: A new list of tracks that are under the length limit
     """
     if strict:
@@ -26,11 +26,18 @@ def sort_list(tracks_list):
 
 
 def compute_list(concert_premiere_length, tracks_list):
+    """
+    Compute the list of tracks that can be used.
+    :param concert_premiere_length: The goal length to reach
+    :param tracks_list: The list of available tracks
+    :return: A boolean indicating if a valid combination was found and the list of tracks
+    """
     total_length = 0
     result = []
-    # To answer to the first bonus quesiton, change the following line (for loop) to the following ones,
+    # To answer to the first bonus question, change the following line (for loop) to the following ones,
     # fix the "strict" parameter in filter_list to False,
-    # and indent the "valid_combination" assignment line.
+    # indent the "valid_combination" assignment line,
+    # and change the "while execute and len(tracks_list) > 2:" to "while execute and len(tracks_list) > 0:"
 
     # valid_combination = False
     # x = 0
