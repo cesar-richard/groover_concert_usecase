@@ -28,6 +28,14 @@ def sort_list(tracks_list):
 def compute_list(concert_premiere_length, tracks_list):
     total_length = 0
     result = []
+    # To answer to the first bonus quesiton, change the following line (for loop) to the following ones,
+    # fix the "strict" parameter in filter_list to False,
+    # and indent the "valid_combination" assignment line.
+
+    # valid_combination = False
+    # x = 0
+    # while not valid_combination:
+    #     x += 1
     for x in range(3):
         print("XXXXX ROUND {} XXXXX".format(x + 1))
         tracks_list = filter_list(tracks_list, concert_premiere_length - total_length, strict=x < 2)
